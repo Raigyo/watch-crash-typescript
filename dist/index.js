@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /* Basic Types */
+Object.defineProperty(exports, "__esModule", { value: true });
 var id = 5;
 var company = "Raigyo-dev";
 var isPublished = true;
@@ -41,7 +41,7 @@ var Direction2;
 })(Direction2 || (Direction2 = {}));
 /* Objects */
 var user = { id: 1, name: "John" };
-var user2 = { id: 1, name: "John" };
+var user1 = { id: 1, name: "John" };
 /* Type assertion */
 /* Sometimes you’ll end up in a situation where you’ll know more about a value than TypeScript does.
  Usually, this will happen when you know the type of some entity could be more specific than its
@@ -53,3 +53,22 @@ var customerId2 = cid;
 function addNum(x, y) {
     return x + y;
 }
+/* Void */
+function log(message) {
+    console.log(message);
+}
+var user2 = { id: 1, name: "John" };
+var add = function (x, y) { return x + y; };
+var sub = function (x, y) { return x + y; };
+// const add2: MathFunc = (x: number, y: string): number => x + y; // Error
+/* Interfaces with classes */
+var Person = /** @class */ (function () {
+    function Person(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    return Person;
+}());
+var vincent = new Person(1, "Vincent");
+var daniel = new Person(2, "Daniel");
+console.log(vincent, daniel);

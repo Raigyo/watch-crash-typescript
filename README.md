@@ -29,6 +29,7 @@ _November 2021_
 `tsc -- watch index`
 
 `tsc`
+
 `tsc -- watch`
 
 ## How to create a _tsconfig.json_?
@@ -42,9 +43,22 @@ Exemple:
    "rootDir": "./src",
 ```
 
-## Exemple
+## Typescript case studies and exemples
 
 _./src/index.ts_
+
+- Basic Types
+- Tuple
+- Tuple array
+- Union
+- Enum
+- Objects / Custom types
+- Functions
+- Void
+- Interfaces
+- Interfaces with functions
+- Interfaces with classes
+- Interfaces with classes
 
 ```ts
 /* Basic Types */

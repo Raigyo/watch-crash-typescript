@@ -1,4 +1,5 @@
 /* Basic Types */
+
 let id: number = 5;
 let company: string = "Raigyo-dev";
 let isPublished: boolean = true;
@@ -15,6 +16,7 @@ let arrayAny: any = [1, 2, "Banaba", true];
 let person: [number, string, boolean] = [1, "Vincent", true];
 
 /* Tuple array */
+
 let employee: [number, string][];
 
 employee = [
@@ -24,10 +26,12 @@ employee = [
 ];
 
 /* Union */
+
 let pid: string | number;
 pid = "22";
 
 /* Enum */
+
 enum Direction1 {
   Up = 1,
   Down,
@@ -46,19 +50,20 @@ enum Direction2 {
 }
 
 /* Objects */
+
 const user: {
   id: number;
   name: string;
 } = { id: 1, name: "John" };
 
-// or
+// or: custom type
 
 type User = {
   id: number;
   name: string;
 };
 
-const user2: User = { id: 1, name: "John" };
+const user1: User = { id: 1, name: "John" };
 
 /* Type assertion */
 
@@ -70,8 +75,60 @@ let customerId = <number>cid;
 let customerId2 = cid as number;
 
 /* Functions */
-function addNum(x: number, y: number) {
+
+function addNum(x: number, y: number): number {
   return x + y;
 }
+
+/* Void */
+
+function log(message: string | number): void {
+  console.log(message);
+}
+
+/* Interfaces */
+/* Interface is a structure that defines the contract in your application. It defines the syntax
+for classes to follow. Classes that are derived from an interface must follow the structure provided
+ by their interface. The TypeScript compiler does not convert interface to JavaScript.*/
+/* Cannot be used with primitive or union */
+
+type UserInterface = {
+  readonly id: number;
+  name: string;
+  age?: number;
+};
+
+const user2: UserInterface = { id: 1, name: "John" };
+// user2.id = 5 // => error
+
+/* Interfaces with function */
+
+interface MathFunc {
+  (x: number, y: number): number;
+}
+
+const add: MathFunc = (x: number, y: number): number => x + y;
+const sub: MathFunc = (x: number, y: number): number => x + y;
+// const add2: MathFunc = (x: number, y: string): number => x + y; // Error
+
+/* Interfaces with classes */
+
+class Person {
+  id: number;
+  name: string;
+
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+const vincent = new Person(1, "Vincent");
+const daniel = new Person(2, "Daniel");
+
+console.log(vincent, daniel);
+// Output: Person { id: 1, name: 'Vincent' } Person { id: 2, name: 'Daniel' }
+
+/* Access modifiers and Data modifiers */
 
 export {};
