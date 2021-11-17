@@ -1,5 +1,20 @@
 "use strict";
 /* Basic Types */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var id = 5;
 var company = "Raigyo-dev";
@@ -61,14 +76,48 @@ var user2 = { id: 1, name: "John" };
 var add = function (x, y) { return x + y; };
 var sub = function (x, y) { return x + y; };
 // const add2: MathFunc = (x: number, y: string): number => x + y; // Error
-/* Interfaces with classes */
+/* Classes, subclasses and Access modifiers and Data modifiers */
 var Person = /** @class */ (function () {
     function Person(id, name) {
-        this.id = id;
-        this.name = name;
+        this.employeeId = id;
+        this.employeeName = name;
     }
+    Person.prototype.register = function () {
+        return this.employeeName + " is now registered with id " + this.employeeId;
+    };
     return Person;
 }());
 var vincent = new Person(1, "Vincent");
 var daniel = new Person(2, "Daniel");
-console.log(vincent, daniel);
+// console.log(vincent, daniel);
+// console.log(vincent.register());
+var Employee = /** @class */ (function (_super) {
+    __extends(Employee, _super);
+    function Employee(id, name, position) {
+        var _this = _super.call(this, id, name) || this;
+        _this.positionInCompany = position;
+        return _this;
+    }
+    return Employee;
+}(Person));
+var emp = new Employee(3, "Yves", "Developer");
+console.log(emp.register());
+console.log(emp);
+console.log(emp.positionInCompany);
+var PersonInt = /** @class */ (function () {
+    function PersonInt(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    PersonInt.prototype.register = function () {
+        return "string";
+        // return 1; // type error
+    };
+    return PersonInt;
+}());
+/* Generics (generic component using placeholders */
+function getArray(items) {
+    return new Array().concat(items);
+}
+var numArray = getArray([1, 2, 3, 4]);
+var strArray = getArray(["Brad", "John", "Jill"]);

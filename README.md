@@ -57,8 +57,9 @@ _./src/index.ts_
 - Void
 - Interfaces
 - Interfaces with functions
+- Classes, subclasses and Access modifiers and Data modifiers
 - Interfaces with classes
-- Interfaces with classes
+- Generics
 
 ```ts
 /* Basic Types */

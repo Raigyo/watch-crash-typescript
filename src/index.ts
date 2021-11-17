@@ -111,9 +111,55 @@ const add: MathFunc = (x: number, y: number): number => x + y;
 const sub: MathFunc = (x: number, y: number): number => x + y;
 // const add2: MathFunc = (x: number, y: string): number => x + y; // Error
 
-/* Interfaces with classes */
+/* Classes, subclasses and Access modifiers and Data modifiers */
 
 class Person {
+  // private id: number;
+  // protected id: number;
+  employeeId: number;
+  employeeName: string;
+
+  constructor(id: number, name: string) {
+    this.employeeId = id;
+    this.employeeName = name;
+  }
+
+  register() {
+    return `${this.employeeName} is now registered with id ${this.employeeId}`;
+  }
+}
+
+const vincent = new Person(1, "Vincent");
+const daniel = new Person(2, "Daniel");
+
+// console.log(vincent, daniel);
+// console.log(vincent.register());
+
+class Employee extends Person {
+  positionInCompany: string;
+  constructor(id: number, name: string, position: string) {
+    super(id, name); // reminder: super is used in subclass to access parent
+    this.positionInCompany = position;
+  }
+}
+
+const emp = new Employee(3, "Yves", "Developer");
+
+console.log(emp.register());
+console.log(emp);
+console.log(emp.positionInCompany);
+
+/* Interfaces with classes */
+
+type PersonInterface = {
+  readonly id: number;
+  name: string;
+  register(): string;
+};
+
+class PersonInt implements PersonInterface {
+  // private id: number;
+  // protected id: number;
   id: number;
   name: string;
 
@@ -121,14 +167,22 @@ class Person {
     this.id = id;
     this.name = name;
   }
+
+  register() {
+    return "string";
+    // return 1; // type error
+  }
 }
 
-const vincent = new Person(1, "Vincent");
-const daniel = new Person(2, "Daniel");
+/* Generics (generic component using placeholders */
 
-console.log(vincent, daniel);
-// Output: Person { id: 1, name: 'Vincent' } Person { id: 2, name: 'Daniel' }
+function getArray<T>(items: T[]): T[] {
+  return new Array().concat(items);
+}
 
-/* Access modifiers and Data modifiers */
+let numArray = getArray<number>([1, 2, 3, 4]);
+let strArray = getArray<string>(["Brad", "John", "Jill"]);
+
+// numArray.push("Hello"); // type error
 
 export {};
